@@ -5,10 +5,27 @@
 int main(int argc, char ** argv) {
 	std::string line;
 	std::ifstream file (argv[1]);
+	std::string text = "";
+	std::string pattern = "";
 
-	if (file) {
-		while (std::getline (file, line)) {
-			std::cout<<line<<std::endl;
+	try {
+		if (file) { //make sure file exists
+			while (std::getline (file, line)) {
+				text += line;
+			}
 		}
+		if (argv[2]) {
+			pattern += argv[2];
+		} else {
+			pattern = "default";
+		}
+		if (text.size() == 0) {
+			throw 20;
+		}
+		std::cout<<pattern<<std::endl;
+		std::cout<<text<<std::endl;
+
+	} catch (...) {
+		std::cout<< " Exception occurred: check if  "<<argv[1]<<" exists and contains text"<<std::endl;
 	}
 }
