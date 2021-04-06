@@ -2,10 +2,12 @@
 
 #include <string>
 #include <iostream>
+#include <map>
 
 /*** suffix tree defenition for pattern matching **/
 
 //tree data structure for containing suffixes
+
 class NaryTree {
 	public:
 		//each tree will contain nodes
@@ -52,4 +54,6 @@ class NaryTree {
 		
 	private:
 		Node* root;
+
+		int getHeightHelper(Node* node) const;
 };
