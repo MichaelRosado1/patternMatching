@@ -1,10 +1,18 @@
 #include "suffixTree.h"
+#include <vector>
+#include <exception>
+
 
 NaryTree::NaryTree() { 
 	
 }
 
 NaryTree::~NaryTree() {
+	try {
+
+	} catch (std::exception e) {
+		throw (e);
+	}
 
 }
 
@@ -24,11 +32,10 @@ int NaryTree::getHeightHelper(Node* node) const {
 		return -1;
 	}
 
-	std::map<char, Node*>::const_iterator it;
 
 	int max = -1;
 
-	for (it = (node->children).begin(); it != node->children.end(); it++) {
+	for (auto it = (node->children).begin(); it != node->children.end(); it++) {
 		int temp = getHeightHelper(it->second);
 		if (temp >= max) {
 			max = temp;

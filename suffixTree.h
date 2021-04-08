@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <vector>
 
 /*** suffix tree defenition for pattern matching **/
 
@@ -13,7 +14,7 @@ class NaryTree {
 		//each tree will contain nodes
 		struct Node {
 			//every node will contain a map to child nodes
-			std::map<std::string, Node*> children;
+			std::map<char, Node*> children;
 
 			//index vector will contain the occurances of the specific pattern
 			//in the text
@@ -24,13 +25,13 @@ class NaryTree {
 			Node(std::string s, int i) {
 				if (s.length() > 0) {
 					//recursive defenition of the node
-					children[s[0]] = new Node(s.substr(1, i));
+					children[s[0]] = new Node(s.substr(1), i);
 				} else {
 					index.push_back(i);
 				}
 			}
 
-			std::bool isLeaf() {
+			bool isLeaf() {
 				if (children.size() == 0) {
 					return true;
 				} else {
@@ -42,7 +43,6 @@ class NaryTree {
 
 		//NaryTree constructor
 		NaryTree();
-
 		//NaryTree destructor
 		~NaryTree();		
 
